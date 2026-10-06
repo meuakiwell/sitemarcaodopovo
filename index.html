@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marcão do Povo</title>
+  <title>Marcão do Povo | Apresentador, Comunicador & Jornalismo Popular</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      scroll-behavior: smooth;
     }
     body {
       background-color: #0c0e12;
@@ -18,26 +19,28 @@
       overflow-x: hidden;
       padding-bottom: 60px;
     }
-    
-    /* TOPO BREAKING NEWS / AO VIVO */
+
+    /* BARRA SUPERIOR AO VIVO / PLANTÃO */
     .top-bar {
       background-color: #e11d48;
       color: #ffffff;
       padding: 10px 20px;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 1px;
       display: flex;
       align-items: center;
       gap: 12px;
+      position: relative;
+      z-index: 1000;
     }
     .badge-live {
       background: #000000;
       color: #ffffff;
       padding: 3px 8px;
       border-radius: 4px;
-      font-size: 12px;
+      font-size: 11px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -47,49 +50,41 @@
       height: 8px;
       background: #ef4444;
       border-radius: 50%;
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      from { opacity: 0.4; }
+      to { opacity: 1; transform: scale(1.2); }
     }
 
-    /* CABEÇALHO */
+    /* CABEÇALHO COM LOGO OFICIAL */
     header {
       background: #11141a;
       border-bottom: 2px solid #0284c7;
-      padding: 18px 25px;
+      padding: 14px 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
     }
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 12px;
+      text-decoration: none;
     }
-    .logo-badge {
-      background: linear-gradient(135deg, #e11d48, #0284c7);
-      color: #ffffff;
-      font-weight: 900;
-      font-size: 22px;
-      padding: 6px 12px;
-      border-radius: 6px;
-    }
-    .logo-name {
-      font-size: 20px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      line-height: 1.1;
-    }
-    .logo-sub {
-      display: block;
-      font-size: 11px;
-      color: #38bdf8;
-      letter-spacing: 2px;
+    .logo-area img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
     }
 
     .nav-links {
       display: flex;
-      gap: 20px;
+      gap: 22px;
       align-items: center;
     }
     .nav-links a {
@@ -99,7 +94,8 @@
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      transition: 0.2s;
+      transition: color 0.2s;
+      cursor: pointer;
     }
     .nav-links a:hover {
       color: #e11d48;
@@ -107,19 +103,23 @@
     .btn-contact-nav {
       background: #e11d48;
       color: #ffffff !important;
-      padding: 8px 18px;
+      padding: 9px 20px;
       border-radius: 4px;
       font-weight: 800;
+      transition: 0.2s;
+    }
+    .btn-contact-nav:hover {
+      background: #be123c;
     }
 
-    /* HERO */
+    /* HERO SECTION */
     .hero {
-      padding: 60px 25px;
+      padding: 65px 25px;
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 40px;
+      gap: 45px;
       align-items: center;
     }
     .tag-hero {
@@ -133,17 +133,25 @@
       border-radius: 20px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .hero-title {
-      font-size: 42px;
+      font-size: 44px;
       font-weight: 900;
       line-height: 1.1;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     .text-red { color: #e11d48; }
     .text-blue { color: #38bdf8; }
+    .hero-slogan {
+      font-size: 22px;
+      font-weight: 800;
+      color: #fbbf24;
+      margin-bottom: 15px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+    }
     .hero-desc {
       font-size: 17px;
       color: #cbd5e1;
@@ -166,6 +174,11 @@
       border-radius: 4px;
       display: inline-block;
       border: 2px solid #e11d48;
+      transition: 0.2s;
+    }
+    .btn-red:hover {
+      background: #be123c;
+      border-color: #be123c;
     }
     .btn-outline {
       background: transparent;
@@ -177,22 +190,28 @@
       border-radius: 4px;
       display: inline-block;
       border: 2px solid #334155;
+      transition: 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: #0284c7;
+      color: #38bdf8;
     }
     
     .hero-card {
       background: #151922;
       border: 1px solid #272f3d;
       border-radius: 12px;
-      padding: 20px;
+      padding: 18px;
       text-align: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
     }
     .hero-card img {
       width: 100%;
-      height: 380px;
+      height: 420px;
       object-fit: cover;
       border-radius: 8px;
       margin-bottom: 15px;
+      display: block;
     }
     .hero-card-quote {
       font-weight: 800;
@@ -212,7 +231,7 @@
       background: linear-gradient(90deg, #0f172a, #031e42, #0f172a);
       border-top: 1px solid #272f3d;
       border-bottom: 1px solid #272f3d;
-      padding: 30px 20px;
+      padding: 32px 20px;
     }
     .metrics-grid {
       max-width: 1200px;
@@ -223,7 +242,7 @@
       text-align: center;
     }
     .metric-val {
-      font-size: 36px;
+      font-size: 38px;
       font-weight: 900;
       color: #ffffff;
       display: block;
@@ -237,11 +256,11 @@
       letter-spacing: 1px;
     }
 
-    /* SEÇÃO SOBRE */
+    /* SEÇÃO COMUM */
     .section-wrap {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 70px 25px;
+      padding: 80px 25px;
     }
     .title-area {
       text-align: center;
@@ -258,24 +277,33 @@
       font-size: 32px;
       font-weight: 900;
       text-transform: uppercase;
-      margin-top: 5px;
+      margin-top: 6px;
     }
 
+    /* SEÇÃO SOBRE */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 45px;
       align-items: center;
+    }
+    .about-img-box img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #272f3d;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     }
     .about-text h3 {
       font-size: 24px;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
       color: #ffffff;
     }
     .about-text p {
       color: #cbd5e1;
       font-size: 16px;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
 
     /* CARDS MULTIMÍDIA */
@@ -290,8 +318,10 @@
       border-top: 4px solid #0284c7;
       border-radius: 8px;
       padding: 25px 20px;
+      transition: transform 0.2s, border-color 0.2s;
     }
     .card-item:hover {
+      transform: translateY(-5px);
       border-top-color: #e11d48;
     }
     .card-h3 {
@@ -327,10 +357,10 @@
       background: linear-gradient(135deg, #0f172a, #1e293b);
       border: 2px solid #e11d48;
       border-radius: 12px;
-      padding: 40px;
+      padding: 45px;
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
-      gap: 30px;
+      gap: 35px;
       align-items: center;
     }
 
@@ -339,10 +369,10 @@
       background: #151922;
       border: 1px solid #272f3d;
       border-radius: 10px;
-      padding: 30px;
+      padding: 32px;
     }
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
     .form-group label {
       display: block;
@@ -356,11 +386,12 @@
       width: 100%;
       background: #0c0e12;
       border: 1px solid #272f3d;
-      padding: 12px;
+      padding: 13px;
       border-radius: 4px;
       color: #ffffff;
       font-size: 14px;
       outline: none;
+      transition: border-color 0.2s;
     }
     .form-input:focus {
       border-color: #0284c7;
@@ -370,7 +401,7 @@
     footer {
       background: #08090b;
       border-top: 1px solid #272f3d;
-      padding: 35px 20px;
+      padding: 40px 20px;
       text-align: center;
       color: #64748b;
       font-size: 13px;
@@ -427,32 +458,28 @@
 </head>
 <body>
 
-  <!-- PLANTÃO TOP BAR -->
+  <!-- BARRA PLANTÃO AO VIVO -->
   <div class="top-bar">
     <div class="badge-live"><div class="live-dot"></div> AO VIVO</div>
     <div>MARCÃO DO POVO: A NOTÍCIA QUE O BRASIL E O POVO QUEREM OUVIR</div>
   </div>
 
-  <!-- HEADER -->
+  <!-- CABEÇALHO COM LOGO OFICIAL DO WIX -->
   <header>
-    <div class="logo-area">
-      <div class="logo-badge">MP</div>
-      <div>
-        <div class="logo-name">MARCÃO DO POVO</div>
-        <span class="logo-sub">COMUNICADOR POPULAR</span>
-      </div>
-    </div>
+    <a href="#inicio" class="logo-area" onclick="scrollToAnchor('inicio', event)">
+      <img src="https://static.wixstatic.com/media/53b9eb_3d6c24421b6644f6913473364de790fe~mv2.png" alt="Marcão do Povo">
+    </a>
     <div class="nav-links">
-      <a href="#inicio">Início</a>
-      <a href="#sobre">Biografia</a>
-      <a href="#atuacao">Multimídia</a>
-      <a href="#comercial">Comercial</a>
-      <a href="#bastidores">Bastidores</a>
-      <a href="#contato" class="btn-contact-nav">Fale Conosco</a>
+      <a href="#inicio" onclick="scrollToAnchor('inicio', event)">Início</a>
+      <a href="#sobre" onclick="scrollToAnchor('sobre', event)">Biografia</a>
+      <a href="#atuacao" onclick="scrollToAnchor('atuacao', event)">Multimídia</a>
+      <a href="#comercial" onclick="scrollToAnchor('comercial', event)">Comercial</a>
+      <a href="#bastidores" onclick="scrollToAnchor('bastidores', event)">Bastidores</a>
+      <a href="#contato" class="btn-contact-nav" onclick="scrollToAnchor('contato', event)">Fale Conosco</a>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <div class="hero" id="inicio">
     <div>
       <span class="tag-hero">Jornalismo Popular & Liderança</span>
@@ -461,26 +488,32 @@
         <span class="text-red">A NOTÍCIA QUE O POVO</span><br>
         <span class="text-blue">QUER OUVIR.</span>
       </h1>
-      <p style="font-size: 21px; font-weight: 800; color: #fbbf24; margin-bottom: 15px; font-style: italic; letter-spacing: 0.5px;">
+      <p class="hero-slogan">
         “Eu não tô aqui pra passar manteiga no bigode do gato!”
       </p>
       <p class="hero-desc">
-        Marcos Paulo Ribeiro Morais (Marcão do Povo) é um dos maiores comunicadores da TV brasileira. Entrando diariamente na casa de milhões com verdade, firmeza e o coração do povo.
+        Marcos Paulo Ribeiro Morais (Marcão do Povo) é um dos maiores comunicadores da TV brasileira. Entrando diariamente na casa de milhões de lares com autenticidade, firmeza e o coração do povo.
       </p>
       <div class="hero-actions">
-        <a href="#comercial" class="btn-red">Anuncie com Marcão</a>
-        <a href="#sobre" class="btn-outline">Conheça a História</a>
+        <!-- LINK DIRETO DO WHATSAPP PARA SOLICITAR MÍDIA KIT -->
+        <a href="https://wa.me/5511943271522?text=Ola%20vim%20pelo%20site%20marcaodopovo.com%20e%20gostaria%20de%20solicitar%20o%20M%C3%ADdia%20Kit%20do%20Marc%C3%A3o%20do%20Povo" 
+           target="_blank" 
+           class="btn-red">
+          Solicitar Mídia Kit
+        </a>
+        <a href="#sobre" class="btn-outline" onclick="scrollToAnchor('sobre', event)">Conheça a História</a>
       </div>
     </div>
 
     <div class="hero-card">
-      <img src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=700&q=80" alt="Marcão do Povo">
-      <div class="hero-card-quote">"A aposta do Sílvio Santos que conquistou o Brasil"</div>
+      <!-- FOTO REAL DO MARCÃO NO ESTÚDIO DE TV DO WIX -->
+      <img src="https://static.wixstatic.com/media/7f634e_483cfc87f94d4e83b4b61321b7fbd61bf000.jpg" alt="Marcão do Povo no estúdio de TV">
+      <div class="hero-card-quote">"A aposta de Silvio Santos que conquistou o Brasil"</div>
       <div class="hero-card-sub">Vice-liderança de audiência em rede nacional</div>
     </div>
   </div>
 
-  <!-- NÚMEROS -->
+  <!-- NÚMEROS DE AUDIÊNCIA -->
   <div class="metrics">
     <div class="metrics-grid">
       <div>
@@ -502,27 +535,28 @@
     </div>
   </div>
 
-  <!-- BIOGRAFIA -->
+  <!-- BIOGRAFIA / HISTÓRIA -->
   <div class="section-wrap" id="sobre">
     <div class="title-area">
       <span class="section-tag">História Real</span>
       <h2 class="section-h2">QUEM É MARCÃO DO POVO?</h2>
     </div>
     <div class="about-grid">
-      <div>
-        <img src="https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=700&q=80" alt="História" style="width:100%; border-radius:8px; border:1px solid #272f3d;">
+      <div class="about-img-box">
+        <!-- FOTO REAL DA REPORTAGEM DO MARCÃO NO SBT -->
+        <img src="https://static.wixstatic.com/media/53b9eb_580305dec08048f5b8225aafacb0de56~mv2.png" alt="História de Marcão do Povo">
       </div>
       <div class="about-text">
         <h3>De engraxate a um dos maiores comunicadores do país</h3>
-        <p>Marcos Paulo Ribeiro Morais nasceu em Minaçu, no estado de Goiás. De origem humilde, já trabalhou como vendedor de picolés, catador de tomates, jornaleiro e engraxate para ajudar a família.</p>
-        <p>Iniciou sua carreira no rádio AM e conquistou o público com seu carisma e coragem de falar o que o povo pensa. Transitou pelas maiores redes como Band e Record, até chegar ao SBT convidado por Silvio Santos para comandar o jornalismo matinal com recordes de audiência.</p>
-        <p>Marcão também é empresário, pai de família e defensor incansável da geração de empregos e oportunidades no Brasil.</p>
+        <p>Marcos Paulo Ribeiro Morais nasceu em Minaçu, no interior de Goiás. De infância simples e humilde, já trabalhou como vendedor de picolés, catador de tomates, jornaleiro e engraxate para ajudar no sustento de sua família.</p>
+        <p>Iniciou sua trajetória nas rádios AM do Centro-Oeste e logo conquistou os ouvintes com sua voz marcante e o dom nato de falar a língua do povo. Transitou pelas maiores redes como Band e Record TV, até chegar ao SBT convidado pessoalmente por Silvio Santos para comandar o jornalismo diário, consagrando-se como vice-líder isolado de audiência em todo o país.</p>
+        <p>Marcão do Povo é empreendedor nato, pai de família e defensor incansável da geração de empregos e oportunidades para quem mais precisa.</p>
       </div>
     </div>
   </div>
 
-  <!-- MULTIPLATAFORMA -->
-  <div style="background:#0e1117; padding:70px 20px;" id="atuacao">
+  <!-- PILARES MULTIMÍDIA -->
+  <div style="background:#0e1117; padding:75px 20px;" id="atuacao">
     <div style="max-width:1200px; margin:0 auto;">
       <div class="title-area">
         <span class="section-tag">Presença Completa</span>
@@ -532,27 +566,27 @@
       <div class="cards-grid">
         <div class="card-item">
           <h3 class="card-h3">Televisão</h3>
-          <p class="card-p">Mais de 3 horas ao vivo diariamente levando verdade e notícias urgentes para milhões de lares.</p>
+          <p class="card-p">Mais de 3 horas ao vivo todos os dias em rede nacional, levando jornalismo direto e cobertura que mexe com o país.</p>
           <ul class="card-list">
             <li>SBT Nacional</li>
-            <li>Vice-liderança absoluta</li>
-            <li>Testemunhais de sucesso</li>
+            <li>Vice-liderança consolidada</li>
+            <li>Testemunhais de marcas</li>
           </ul>
         </div>
 
         <div class="card-item">
           <h3 class="card-h3">Internet & Redes</h3>
-          <p class="card-p">Comunidade engajada com mais de 29 milhões de impressões mensais nas principais redes.</p>
+          <p class="card-p">Comunidade ativa com mais de 29 milhões de impressões mensais nas plataformas digitais.</p>
           <ul class="card-list">
             <li>@marcaodopovooficial</li>
-            <li>Vídeos e Lives</li>
-            <li>Interação diária</li>
+            <li>Vídeos e bastidores</li>
+            <li>Lives e engajamento real</li>
           </ul>
         </div>
 
         <div class="card-item">
           <h3 class="card-h3">Rádio</h3>
-          <p class="card-p">A raiz da comunicação popular nas maiores emissoras do Centro-Oeste e Norte do país.</p>
+          <p class="card-p">A raiz popular viva na memória e nos microfones das grandes rádios do Centro-Oeste e Norte do Brasil.</p>
           <ul class="card-list">
             <li>Você FM & Cidade FM</li>
             <li>Tocantins FM</li>
@@ -562,9 +596,9 @@
 
         <div class="card-item">
           <h3 class="card-h3">Mídia & Eventos</h3>
-          <p class="card-p">Campanhas nacionais, outdoors, presença VIP e palestras motivacionais de superação.</p>
+          <p class="card-p">Presença forte em outdoors, campanhas nacionais, palestras de motivação e mestre de cerimônias.</p>
           <ul class="card-list">
-            <li>Mídia OOH e outdoors</li>
+            <li>Mídia OOH urbana</li>
             <li>Mestre de cerimônias</li>
             <li>Palestras pelo Brasil</li>
           </ul>
@@ -579,56 +613,69 @@
       <div>
         <span class="section-tag" style="color:#38bdf8;">OPORTUNIDADE COMERCIAL</span>
         <h2 class="section-h2" style="font-size:28px; margin: 10px 0 15px;">ASSOCIE SUA MARCA A QUEM TEM A CONFIANÇA DO POVO</h2>
-        <p style="color:#cbd5e1; margin-bottom:20px;">
-          Marcão do Povo converte credibilidade em resultados reais de vendas. Formatos sob medida para marcas que querem falar com o consumidor real de todo o Brasil.
+        <p style="color:#cbd5e1; margin-bottom:24px;">
+          Marcão do Povo converte credibilidade em resultados reais de vendas. Formatos de patrocínio sob medida para marcas que querem falar com o consumidor real de todo o Brasil.
         </p>
-        <a href="#contato" class="btn-red">Solicitar Mídia Kit</a>
+        <!-- BOTÃO SOLICITAR MÍDIA KIT PARA WHATSAPP -->
+        <a href="https://wa.me/5511943271522?text=Ola%20vim%20pelo%20site%20marcaodopovo.com%20e%20gostaria%20de%20solicitar%20o%20M%C3%ADdia%20Kit%20do%20Marc%C3%A3o%20do%20Povo" 
+           target="_blank" 
+           class="btn-red">
+          Solicitar Mídia Kit no WhatsApp
+        </a>
       </div>
       <div style="background:#0c0e12; border:1px solid #334155; border-radius:8px; padding:25px; text-align:center;">
-        <h4 style="font-size:18px; margin-bottom:10px;">Contato Comercial Direto</h4>
-        <p style="color:#94a3b8; font-size:14px; margin-bottom:20px;">Fale diretamente com nossa assessoria de parcerias e marcas.</p>
-        <a href="https://wa.me/5511943271522?text=Ol%C3%A1%2C%20vim%20pelo%20site%20marcaodopovo.com%20e%20gostaria%20de%20saber%20mais" target="_blank" class="btn-red" style="background:#16a34a; border-color:#16a34a; width:100%; box-sizing:border-box;">Chamar no WhatsApp</a>
+        <h4 style="font-size:18px; margin-bottom:10px;">Atendimento Comercial Direto</h4>
+        <p style="color:#94a3b8; font-size:14px; margin-bottom:20px;">Fale diretamente com a equipe de parcerias e marcas no WhatsApp.</p>
+        <a href="https://wa.me/5511943271522?text=Ola%20vim%20pelo%20site%20marcaodopovo.com%20e%20gostaria%20de%20solicitar%20o%20M%C3%ADdia%20Kit%20do%20Marc%C3%A3o%20do%20Povo" 
+           target="_blank" 
+           class="btn-red" 
+           style="background:#16a34a; border-color:#16a34a; width:100%; box-sizing:border-box;">
+          Chamar no WhatsApp
+        </a>
       </div>
     </div>
   </div>
 
-  <!-- BASTIDORES & DIA A DIA -->
-  <div style="background:#0e1117; padding:70px 20px;" id="bastidores">
+  <!-- BASTIDORES & COMERCIAIS NA TV -->
+  <div style="background:#0e1117; padding:75px 20px;" id="bastidores">
     <div style="max-width:1200px; margin:0 auto;">
       <div class="title-area">
-        <span class="section-tag">Rotina & Energia</span>
-        <h2 class="section-h2">NOS ESTÚDIOS E COM O POVO</h2>
+        <span class="section-tag">Na TV e com Marcas</span>
+        <h2 class="section-h2">CAMPANHAS E MOMENTOS NA TV</h2>
       </div>
 
       <div class="cards-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div style="background:#151922; border-radius:8px; overflow:hidden; border:1px solid #272f3d;">
-          <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&w=600&q=80" alt="Ao vivo nos estúdios" style="width:100%; height:220px; object-fit:cover; display:block;">
+          <!-- FOTO REAL DO COMERCIAL CARTÃO DE TODOS -->
+          <img src="https://static.wixstatic.com/media/7f634e_ab924544a72c425596b05e37d9cbed5bf002.jpg" alt="Campanhas de TV" style="width:100%; height:230px; object-fit:cover; display:block;">
           <div style="padding:18px;">
-            <h4 style="font-size:16px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">Ao Vivo para o Brasil</h4>
-            <p style="color:#94a3b8; font-size:13px;">Coberturas jornalísticas diárias de alta tensão e impacto.</p>
+            <h4 style="font-size:16px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">Campanhas Nacionais</h4>
+            <p style="color:#94a3b8; font-size:13px;">Grandes marcas com veiculação nacional e poder de conversão comprovado.</p>
           </div>
         </div>
 
         <div style="background:#151922; border-radius:8px; overflow:hidden; border:1px solid #272f3d;">
-          <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=600&q=80" alt="Comunicação popular" style="width:100%; height:220px; object-fit:cover; display:block;">
+          <!-- FOTO REAL DO MERCHANDISING TOPTHERM -->
+          <img src="https://static.wixstatic.com/media/7f634e_0a8e11d411e54315ad2fcba764622242f000.jpg" alt="Merchandising Ao Vivo" style="width:100%; height:230px; object-fit:cover; display:block;">
           <div style="padding:18px;">
-            <h4 style="font-size:16px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">Voz Firme no Microfone</h4>
-            <p style="color:#94a3b8; font-size:13px;">A linguagem clara e direta que fala a verdade que o povo quer ouvir.</p>
+            <h4 style="font-size:16px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">Merchandising Ao Vivo</h4>
+            <p style="color:#94a3b8; font-size:13px;">Testemunhais com credibilidade e o jeito espontâneo que o público confia.</p>
           </div>
         </div>
 
         <div style="background:#151922; border-radius:8px; overflow:hidden; border:1px solid #272f3d;">
-          <img src="https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?auto=format&fit=crop&w=600&q=80" alt="Carinho com as pessoas" style="width:100%; height:220px; object-fit:cover; display:block;">
+          <!-- FOTO REAL DO INSTAGRAM/REDES -->
+          <img src="https://static.wixstatic.com/media/53b9eb_62e3553067a74c43ab9b452243720c8c~mv2.jpg" alt="Redes Sociais" style="width:100%; height:230px; object-fit:cover; display:block;">
           <div style="padding:18px;">
-            <h4 style="font-size:16px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">Conexão com as Pessoas</h4>
-            <p style="color:#94a3b8; font-size:13px;">Carinho popular construído com autenticidade e trabalho incansável.</p>
+            <h4 style="font-size:16px; font-weight:800; text-transform:uppercase; margin-bottom:6px;">Conexão Digital</h4>
+            <p style="color:#94a3b8; font-size:13px;">Interação diária com milhões de seguidores nas redes oficiais.</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CONTATO -->
+  <!-- FORMULÁRIO DE CONTATO ENVIANDO PARA CONTATO@MARCAODOPOVO.COM -->
   <div class="section-wrap" id="contato">
     <div class="title-area">
       <span class="section-tag">Atendimento Oficial</span>
@@ -639,36 +686,42 @@
       <div>
         <h3 style="font-size:22px; margin-bottom:15px;">Canais Oficiais</h3>
         <p style="color:#cbd5e1; margin-bottom:20px;">Para propostas publicitárias, entrevistas, palestras e informações de imprensa.</p>
+        <p style="color:#94a3b8; margin-bottom:10px;"><strong>E-mail Direto:</strong> <a href="mailto:contato@marcaodopovo.com" style="color:#38bdf8; text-decoration:none;">contato@marcaodopovo.com</a></p>
+        <p style="color:#94a3b8; margin-bottom:10px;"><strong>WhatsApp:</strong> <a href="https://wa.me/5511943271522" target="_blank" style="color:#22c55e; text-decoration:none;">(11) 94327-1522</a></p>
         <p style="color:#94a3b8; margin-bottom:10px;"><strong>Instagram:</strong> @marcaodopovooficial</p>
         <p style="color:#94a3b8; margin-bottom:10px;"><strong>Localização:</strong> São Paulo - SP</p>
       </div>
 
       <div class="form-box">
-        <form onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!');">
+        <!-- FORMULÁRIO ENVIANDO PARA CONTATO@MARCAODOPOVO.COM -->
+        <form id="contactForm" onsubmit="enviarMensagem(event)">
           <div class="form-group">
-            <label>Nome / Empresa</label>
-            <input type="text" class="form-input" placeholder="Seu nome ou marca" required>
+            <label>Nome / Empresa *</label>
+            <input type="text" id="formNome" class="form-input" placeholder="Seu nome ou marca" required>
           </div>
           <div class="form-group">
-            <label>E-mail</label>
-            <input type="email" class="form-input" placeholder="seuemail@exemplo.com" required>
+            <label>Seu E-mail *</label>
+            <input type="email" id="formEmail" class="form-input" placeholder="seuemail@exemplo.com" required>
           </div>
           <div class="form-group">
-            <label>Telefone / WhatsApp</label>
-            <input type="tel" class="form-input" placeholder="(11) 99999-9999" required>
+            <label>Telefone / WhatsApp *</label>
+            <input type="tel" id="formTelefone" class="form-input" placeholder="(11) 99999-9999" required>
           </div>
           <div class="form-group">
-            <label>Mensagem</label>
-            <textarea class="form-input" rows="3" placeholder="Como podemos ajudar?"></textarea>
+            <label>Mensagem *</label>
+            <textarea id="formMensagem" class="form-input" rows="3" placeholder="Como podemos ajudar?" required></textarea>
           </div>
-          <button type="submit" class="btn-red" style="width:100%; cursor:pointer;">Enviar Mensagem</button>
+          <button type="submit" class="btn-red" style="width:100%; cursor:pointer;">
+            Enviar para contato@marcaodopovo.com
+          </button>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- RODAPÉ -->
+  <!-- RODAPÉ COM LOGO -->
   <footer>
+    <img src="https://static.wixstatic.com/media/53b9eb_3d6c24421b6644f6913473364de790fe~mv2.png" alt="Marcão do Povo" style="height:40px; margin-bottom:15px; opacity:0.85;">
     <p>© 2026 Marcão do Povo. Todos os direitos reservados. A voz da verdade e a notícia que o povo quer ouvir.</p>
   </footer>
 
@@ -683,6 +736,39 @@
       <path d="M16 2.5C8.544 2.5 2.5 8.544 2.5 16c0 2.68.784 5.184 2.144 7.296L2.6 30.4l7.328-1.92A13.43 13.43 0 0 0 16 29.5c7.456 0 13.5-6.044 13.5-13.5S23.456 2.5 16 2.5zm0 24.64c-2.288 0-4.432-.672-6.256-1.84l-.448-.288-4.352 1.136 1.168-4.24-.288-.464A11.08 11.08 0 0 1 4.88 16c0-6.136 4.984-11.12 11.12-11.12 6.136 0 11.12 4.984 11.12 11.12 0 6.136-4.984 11.12-11.12 11.12zm6.112-8.32c-.336-.168-1.984-.976-2.288-1.088-.304-.112-.528-.168-.752.168-.224.336-.864 1.088-1.056 1.312-.192.224-.384.256-.72.088a9.09 9.09 0 0 1-2.672-1.648 10.02 10.02 0 0 1-1.856-2.304c-.192-.336-.016-.52.152-.688.152-.152.336-.384.504-.576.168-.192.224-.336.336-.56.112-.224.056-.416-.032-.576-.088-.168-.752-1.808-1.032-2.48-.272-.656-.544-.568-.752-.576-.192-.008-.416-.008-.64-.008s-.592.088-.904.416c-.304.336-1.168 1.144-1.168 2.784s1.192 3.232 1.36 3.456c.168.224 2.352 3.6 5.704 5.048.796.344 1.418.55 1.904.704.8.256 1.528.22 2.104.134.64-.096 1.984-.808 2.264-1.592.28-.784.28-1.456.192-1.592-.088-.136-.312-.224-.648-.392z"/>
     </svg>
   </a>
+
+  <!-- SCRIPT PARA ÂNCORAS SUAVES E ENVIO DE E-MAIL -->
+  <script>
+    // Rolagem suave para as âncoras (funciona dentro e fora de iframes)
+    function scrollToAnchor(id, event) {
+      if (event) event.preventDefault();
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, null, '#' + id);
+      }
+    }
+
+    // Envio do formulário para contato@marcaodopovo.com
+    function enviarMensagem(e) {
+      e.preventDefault();
+      const nome = document.getElementById('formNome').value;
+      const email = document.getElementById('formEmail').value;
+      const tel = document.getElementById('formTelefone').value;
+      const msg = document.getElementById('formMensagem').value;
+
+      const assunto = encodeURIComponent(`Contato pelo Site - ${nome}`);
+      const corpo = encodeURIComponent(
+        `Nome / Empresa: ${nome}\n` +
+        `E-mail: ${email}\n` +
+        `Telefone/WhatsApp: ${tel}\n\n` +
+        `Mensagem:\n${msg}`
+      );
+
+      // Abre o cliente de e-mail com os dados preenchidos para contato@marcaodopovo.com
+      window.location.href = `mailto:contato@marcaodopovo.com?subject=${assunto}&body=${corpo}`;
+    }
+  </script>
 
 </body>
 </html>
